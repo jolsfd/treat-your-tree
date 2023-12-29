@@ -2,7 +2,7 @@ import time
 import socket
 import machine
 import urequests
-import json
+#import json
 import _thread
 import ntptime
 
@@ -19,7 +19,7 @@ WATER_POWER.value(0)
 
 BUZZER_PIN = 10
 
-TIME_API = "https://timeapi.io/api/Time/current/zone?timeZone=Europe/Berlin"
+#TIME_API = "https://timeapi.io/api/Time/current/zone?timeZone=Europe/Berlin"
 IP_BULB = "192.168.189.28"
 
 LOW = 10000
@@ -27,7 +27,7 @@ DURATION = 10000#300000
 
 UTC_OFFSET = 1 * 60 * 60
 
-rtc = machine.RTC()
+#rtc = machine.RTC()
 
 shutdown = False
 new_measurement = False
@@ -319,7 +319,7 @@ def notify_bulb():
         time.sleep(1.5)
 
 
-def notify(rtc, timer_led):
+def notify(timer_led):#rtc, timer_led):
     global water_data
 
     if water_data > LOW:
@@ -347,7 +347,7 @@ def notify(rtc, timer_led):
     return
 
 
-def set_time_from_network(time_url, rtc):
+def set_time_from_network():#time_url, rtc):
     print("pulling time...")
 
     synced = False
@@ -435,12 +435,12 @@ def debug_mode():
 def main():
     global shutdown
     global new_measurement
-    global rtc
+    #global rtc
 
     if debug_mode():
         return
 
-    set_time_from_network(TIME_API, rtc)
+    set_time_from_network()#TIME_API, rtc)
     print("localtime:", time.localtime(time.time() + UTC_OFFSET))
     s = setup_server()
 
@@ -451,7 +451,7 @@ def main():
 
     while not shutdown:
         if new_measurement:
-            notify(rtc, blinking_timer)
+            notify(blinking_timer) #rtc,
             new_measurement = False
 
         listen_and_serve(s)
