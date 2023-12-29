@@ -2,7 +2,7 @@
 
 ## Description
 
-A smart sensor that tracks the water level of your Christmas tree.
+A smart sensor that tracks the water level of your Christmas tree. When the tree needs water, the sensor plays the melody of "O Tannenbaum", causes a lamp with a Shelly relay and a red LED to flash.
 
 ## Shopping List
 
